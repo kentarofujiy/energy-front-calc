@@ -1,0 +1,193 @@
+<div class="table-container">
+	<h4 class="table-title">totais</h4>
+	<table class="table-wrap minimalistBlack">
+		<tr>
+			<th>Total na fatura</th>
+			<th>Valor conta (Verde)</th>
+			<th>Valor simulado (Azul 0%)</th>
+			<th>Valor simulado (Azul)</th>
+		</tr>
+		<tr>
+			<td>{{ histValorFatura }}</td>
+			<td>{{ totalMes }}</td>
+			<td>{{calc1}}</td>
+			<td>{{simuladoValorTotal}}</td>
+		</tr>
+	</table>
+  <div style="display: block;">
+  <canvas baseChart 
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas> 
+</div>
+</div>
+<div class="table-container">
+	<h4 class="table-title">comparativo</h4>
+	<table class="table-wrap minimalistBlack">
+		<tr>
+			<th>Perde-ganha inicial</th>
+			<th>Perde-ganha simulado</th>
+			<th>Perde-ganha cenário</th>
+		</tr>
+		<tr>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+	</table>
+</div>
+<div class="table-container">
+	<h4 class="table-title">simulação</h4>
+	<table class="table-wrap minimalistBlack">
+		<tr>
+			<th>Valor do slider</th>
+		</tr>
+		<tr>
+		 	<td>{{ sliderPercentage }}</td>
+		</tr>
+	</table>
+</div>
+
+<div class="table-container">
+	<h4 class="table-title">Table breakdown</h4>
+	<table class="table-wrap minimalistBlack">
+		<tr>
+      <th>Dado</th>
+			<th>Histórico</th>
+			<th>Origem (Verde)</th>
+			<th>Simulacao (Azul)</th>
+		</tr>
+		<tr>
+       <td>Consumo Kwh Ponta Tusd ( histCoKwhPontaTusd)</td>
+			<td>{{   histCoKwhPontaTusd }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+       <td>Consumo Kwh Fora Ponta Tusd ( histCoKwhForaPontaTusd)</td>
+			<td>{{ histCoKwhForaPontaTusd }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+      <td>Consumo TE Ativo Ponta (histCoTeAtivoPonta)</td>
+			<td>{{ histCoTeAtivoPonta }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+    	 <td>Consumo TE Ativo Fora Ponta (histCoTeAtivoForaPonta)</td>
+			<td>{{ histCoTeAtivoForaPonta }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+      <td>Consumo Reativo Excedente Ponta (histCoReativoPonta)</td>
+			<td>{{ histCoReativoPonta}}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+         <td>Consumo reative excedente Fora Ponta ( histCoReativoForaPonta)</td>
+			<td>{{  histCoReativoForaPonta}}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+      <td>Adicional Bandeira Ponta (valor dinheiro histAdicionalBandeirasPonta)</td>
+			<td>{{ histAdicionalBandeirasPonta}}</td>
+			<td>{{ histAdicionalBandeirasPonta }}</td>
+			<td>{{histAdicionalBandeirasPonta}}</td>
+		</tr>
+    		<tr>
+           <td>Adicional Bandeiros Fora ponta (histAdicionalBandeirasForaPonta)</td>
+			<td>{{ histAdicionalBandeirasForaPonta }}</td>
+			<td>{{ histAdicionalBandeirasForaPontao }}</td>
+			<td>{{ histAdicionalBandeirasForaPonta }}</td>
+		</tr>
+    <tr>
+       <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+           <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+       <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+           <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+       <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+           <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    <tr>
+       <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+    		<tr>
+           <td>Dado</td>
+			<td>{{ perdeGanhaInicio }}</td>
+			<td>{{ perdeGanhaSimulado }}</td>
+			<td>{{calc1}}</td>
+		</tr>
+	</table>
+</div>
+<div class="table-container">
+	<h4 class="table-title">simulação</h4>
+	<table class="table-wrap minimalistBlack">
+		<tr>
+			<th>Valor do slider</th>
+		</tr>
+		<tr>
+		 	<td>{{ sliderPercentage }}</td>
+		</tr>
+	</table>
+</div>
+
+
+
+
+<div>
+	<form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+		<div *ngFor="let question of questions" class="form-row">
+			<app-question [question]="question" [form]="form"></app-question>
+		</div>
+
+		<div class="form-row">
+			<button type="submit" [disabled]="!form.valid">Calcular</button>
+		</div>
+	</form>
+
+
+	<div *ngIf="payLoad" class="form-row">
+		<strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+	</div>
