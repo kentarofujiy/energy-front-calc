@@ -54,7 +54,7 @@ export class DynamicFormComponent implements OnInit {
   histCoKwhPontaTusd: any = 0; // linha 1
   histCoKwhForaPontaTusd: any = 3; //linha 2
   histCoTeAtivoPonta: any = 3; // linha 3
-  histCoTeAtivoForaPonta: any = 3; //linha 4
+  histCoTeAtivoForaPonta: any = 0; //linha 4
   histCoReativoPonta: any = 3; // linha 5
   histCoReativoForaPonta: any = 3; //linha 6
   histAdicionalBandeirasPonta: any = 3; //linha 7
@@ -105,12 +105,12 @@ export class DynamicFormComponent implements OnInit {
   tarAzulKwTEForaPonta: any = 3;
 
   //op5
-  azulCoReaExePonta: any = 3;
-  tarAzulKwhrTEPonta: any = 3;
+  azulCoReaExePonta: any = 0;
+  tarAzulKwhrTEPonta: any = 0;
 
   //op6
-  azulCoReaExeForaPonta: any = 3;
-  tarAzulKwhrTForaPonta: any = 3;
+  azulCoReaExeForaPonta: any = 0;
+  tarAzulKwhrTForaPonta: any = 0;
 
   //op7
   azulAdicionalBandPonta: any = 3;
@@ -220,6 +220,12 @@ export class DynamicFormComponent implements OnInit {
     this.tarAzulKwhPontaTusd = 0.082123123; //op1 linha1
     this.tarAzulKwForaPontaTusd = 0.0826473; //op2 linha2
     this.tarAzulKwTePonta = 0.47362066; // op3 linha3
+    this.tarAzulKwTEForaPonta = 0.2874082; //op4 linha4
+    this.tarAzulKwhrTEPonta = 0.30292613; //op5 linha5
+    this.tarAzulKwhrTForaPonta = 0.30292023; // op6 linha6 
+    // op7 bandeiras ponta vem direto do Historico
+    // op8 bandeiras fora ponta vem direto do Historico
+
  }
   
 
@@ -258,30 +264,32 @@ export class DynamicFormComponent implements OnInit {
     console.log("op3 = " + this.azulCoTeAtivoPonta);
 
     //operacao 4
-      this.tarAzulKwTEForaPonta = 0.2874082;
     this.azulCoTeAtivoForaPonta =
-      this.histCoTeAtivoForaPonta * this.tarAzulKwTEForaPonta;
+    math.multiply(this.histCoTeAtivoForaPonta, this.tarAzulKwTEForaPonta);
     this.op4 = this.azulCoTeAtivoForaPonta;
+    console.log("op4 = " + this.azulCoTeAtivoForaPonta);
 
     //operacao 5
-     this.tarAzulKwhrTEPonta = 0.30292613;
-    this.azulCoReaExePonta = this.histCoReativoPonta * this.tarAzulKwhrTEPonta;
+    this.azulCoReaExePonta = 
+    math.multiply(this.histCoReativoPonta, this.tarAzulKwhrTEPonta);
     this.op5 = this.azulCoReaExePonta;
+    console.log("op5 = " + this.azulCoReaExePonta);
 
     //operacao 6
-    this.tarAzulKwhrTForaPonta = 0.30292023;
     this.azulCoReaExeForaPonta =
-      this.histCoReativoForaPonta * this.tarAzulKwhrTForaPonta;
+    math.multiply(this.histCoReativoForaPonta, this.tarAzulKwhrTForaPonta);
     this.op6 = this.azulCoReaExeForaPonta;
-
-    //operacao 7
+    console.log("op6 = " + this.azulCoReaExeForaPonta);
     
+    //operacao 7
     this.azulAdicionalBandPonta = this.histAdicionalBandeirasPonta;
     this.op7 = this.azulAdicionalBandPonta;
+    console.log("op7 = " + this.azulAdicionalBandPonta);
 
-    //op8
+    //operacao 8
     this.azulAdicionalBandForaPonta = this.histAdicionalBandeirasForaPonta;
     this.op8 = this.azulAdicionalBandForaPonta;
+    console.log("op8 = " + this.azulAdicionalBandForaPonta);
 
     //operacao 9
     this.tarAzulKwrReatExe = 19.5772335;
