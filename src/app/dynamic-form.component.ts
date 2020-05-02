@@ -59,7 +59,7 @@ export class DynamicFormComponent implements OnInit {
   histCoReativoForaPonta: any = 3; //linha 6
   histAdicionalBandeirasPonta: any = 3; //linha 7
   histAdicionalBandeirasForaPonta: any = 3; //linha 8
-  histDemReatExeForaPontaTusd: any = 3; //linha 9
+  histDemReatExeForaPontaTusd: any = 0; //linha 9
   histDemRegisPontaTusd: any = 3; // linha 10
 
   demandaContatadaLimite: any = 0;
@@ -119,7 +119,7 @@ export class DynamicFormComponent implements OnInit {
   azulAdicionalBandForaPonta: any = 3;
 
   //9
-  azulDemReatExeForaPontaTusd: any = 3;
+  azulDemReatExeForaPontaTusd: any = 0;
 
   //10
   azulDemRegisPontaTusd: any = 3;
@@ -202,7 +202,7 @@ export class DynamicFormComponent implements OnInit {
     this.histCoReativoForaPonta = 7486; // linha 6
     // linha 7 op 7 é valor em real nao entra
     // linha 8 op 8 é valor em real nao entra
-    this.histDemReatExeForaPontaTusd = 357.15; //linha 9
+    this.histDemReatExeForaPontaTusd = 18.24; //linha 9
     this.histDemRegisPontaTusd = 0; // linha 10
     this.demandaContatadaLimite = 130;
 
@@ -225,7 +225,7 @@ export class DynamicFormComponent implements OnInit {
     this.tarAzulKwhrTForaPonta = 0.30292023; // op6 linha6 
     // op7 bandeiras ponta vem direto do Historico
     // op8 bandeiras fora ponta vem direto do Historico
-
+    this.tarAzulKwrReatExe = 19.5772335; // op9 linha9
  }
   
 
@@ -292,8 +292,11 @@ export class DynamicFormComponent implements OnInit {
     console.log("op8 = " + this.azulAdicionalBandForaPonta);
 
     //operacao 9
-    this.tarAzulKwrReatExe = 19.5772335;
-    this.op9 = this.histDemReatExeForaPontaTusd * this.tarAzulKwrReatExe;
+    this.azulDemReatExeForaPontaTusd = 
+    math.multiply(this.histDemReatExeForaPontaTusd,this.tarAzulKwrReatExe);
+    this.op10 = this.azulDemReatExeForaPontaTusd;
+    console.log("op10 = " + this.azulDemReatExeForaPontaTusd );
+
 
     //operacao 10
     this.tarAzulDemRegisPontaTusd = 41.6531028903238;
