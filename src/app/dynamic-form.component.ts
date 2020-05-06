@@ -44,6 +44,7 @@ export class DynamicFormComponent implements OnInit {
   // variaveis Tarfifas
   tarAzulKwrReatExe: any = 0; // lihnha 9
   tarAzulDemRegisPontaTusd: any = 0;
+  tarAzulDemRegisForaPontaTusd: any = 0;
 
   // Variaveis histórico de consumo
   histValorFatura: any = 0;
@@ -122,10 +123,10 @@ export class DynamicFormComponent implements OnInit {
   azulDemReatExeForaPontaTusd: any = 0;
 
   //10
-  azulDemRegisPontaTusd: any = 3;
+  azulDemRegisPontaTusd: any = 0;
 
   //11
-  azulDemRegisForaPontaTusd: any = 3;
+  azulDemRegisForaPontaTusd: any = 0;
 
   //12
   azulUltrapassagemForaPonta: any = 3;
@@ -204,6 +205,7 @@ export class DynamicFormComponent implements OnInit {
     // linha 8 op 8 é valor em real nao entra
     this.histDemReatExeForaPontaTusd = 18.24; //linha 9
     this.histDemRegisPontaTusd = 0; // linha 10
+    this.histDemanRegisKwForaPonta = 146.60; //linha 11
     this.demandaContatadaLimite = 130;
 
 
@@ -226,6 +228,8 @@ export class DynamicFormComponent implements OnInit {
     // op7 bandeiras ponta vem direto do Historico
     // op8 bandeiras fora ponta vem direto do Historico
     this.tarAzulKwrReatExe = 19.5772335; // op9 linha9
+    this.tarAzulDemRegisPontaTusd = 41.6531028903238; //op10 linha10
+    this.tarAzulDemRegisForaPontaTusd = 19,57733126; //op11 linha11
  }
   
 
@@ -294,17 +298,21 @@ export class DynamicFormComponent implements OnInit {
     //operacao 9
     this.azulDemReatExeForaPontaTusd = 
     math.multiply(this.histDemReatExeForaPontaTusd,this.tarAzulKwrReatExe);
-    this.op10 = this.azulDemReatExeForaPontaTusd;
-    console.log("op10 = " + this.azulDemReatExeForaPontaTusd );
+    this.op9 = this.azulDemReatExeForaPontaTusd;
+    console.log("op9 = " + this.azulDemReatExeForaPontaTusd );
 
 
-    //operacao 10
-    this.tarAzulDemRegisPontaTusd = 41.6531028903238;
-    this.op10 = this.histDemRegisPontaTusd * this.tarAzulDemRegisPontaTusd;
+    //operacao 10 somente simulacao azul (essa 10 ta na ordem errada tinha que ser a9)
+    this.azulDemRegisPontaTusd = 
+    math.multiply(this.histDemRegisPontaTusd, this.tarAzulDemRegisPontaTusd);
+    this.op10 = this.azulDemRegisPontaTusd;
+    console.log("op10 = " + this.azulDemRegisPontaTusd);
 
     //operacao 11
-    this.azulDemRegisForaPontaTusd = 2870.04;
-    this.op11 = this.azulDemRegisForaPontaTusd * this.tarAzulDemRegisPontaTusd;
+    this.azulDemRegisForaPontaTusd = 
+    math.multiply(this.histDemanRegisKwForaPonta, this.tarAzulDemRegisForaPontaTusd);
+    this.op11 = this.azulDemRegisForaPontaTusd;
+    console.log("op11 = " + this.azulDemRegisForaPontaTusd);
 
     //operacao 12
     this.azulUltrapassagemForaPonta = 649.96;
