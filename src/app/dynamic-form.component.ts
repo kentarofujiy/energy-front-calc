@@ -45,6 +45,7 @@ export class DynamicFormComponent implements OnInit {
   tarAzulKwrReatExe: any = 0; // lihnha 9
   tarAzulDemRegisPontaTusd: any = 0;
   tarAzulDemRegisForaPontaTusd: any = 0;
+  tarAzulExeKwhForaPonta: any = 0;
 
   // Variaveis histórico de consumo
   histValorFatura: any = 0;
@@ -62,7 +63,8 @@ export class DynamicFormComponent implements OnInit {
   histAdicionalBandeirasForaPonta: any = 3; //linha 8
   histDemReatExeForaPontaTusd: any = 0; //linha 9
   histDemRegisPontaTusd: any = 3; // linha 10
-
+  histDemUltrapForaPonta: any = 0; //linha 12
+  histOutros: any = 0;
   demandaContatadaLimite: any = 0;
   // Init resultados operacoes
   op1: any = 3;
@@ -129,10 +131,10 @@ export class DynamicFormComponent implements OnInit {
   azulDemRegisForaPontaTusd: any = 0;
 
   //12
-  azulUltrapassagemForaPonta: any = 3;
+  azulUltrapassagemForaPonta: any = 0;
 
   //13
-  azulOutros: any = 3;
+  azulOutros: any = 0;
 
   //14
   azulSimHisCoPontTusdXMult: any = 3;
@@ -203,9 +205,11 @@ export class DynamicFormComponent implements OnInit {
     this.histCoReativoForaPonta = 7486; // linha 6
     // linha 7 op 7 é valor em real nao entra
     // linha 8 op 8 é valor em real nao entra
-    this.histDemReatExeForaPontaTusd = 18.24; //linha 9
+    this.histDemReatExeForaPontaTusd = 18.24; //linha 9 
     this.histDemRegisPontaTusd = 0; // linha 10
-    this.histDemanRegisKwForaPonta = 146.60; //linha 11
+    this.histDemanRegisKwForaPonta = 146.60; //linha 11/
+    this.histDemUltrapForaPonta = 16.60; //linha 12
+    this.histOutros = 31.90 //
     this.demandaContatadaLimite = 130;
 
 
@@ -230,6 +234,7 @@ export class DynamicFormComponent implements OnInit {
     this.tarAzulKwrReatExe = 19.5772335; // op9 linha9
     this.tarAzulDemRegisPontaTusd = 41.6531028903238; //op10 linha10
     this.tarAzulDemRegisForaPontaTusd = 19,57733126; //op11 linha11
+    this.tarAzulExeKwhForaPonta = 39,15442947; // op12 linha12
  }
   
 
@@ -315,12 +320,16 @@ export class DynamicFormComponent implements OnInit {
     console.log("op11 = " + this.azulDemRegisForaPontaTusd);
 
     //operacao 12
-    this.azulUltrapassagemForaPonta = 649.96;
+    this.azulUltrapassagemForaPonta =
+    math.multiply(this.histDemUltrapForaPonta, this.tarAzulExeKwhForaPonta);
     this.op12 = this.azulUltrapassagemForaPonta;
+    console.log("op12 = " + this.azulUltrapassagemForaPonta);
 
     //operacao 13
-    this.azulOutros = 31.9;
+    this.azulOutros =
+    this.histOutros; 
     this.op13 = this.azulOutros;
+    conslole.log("op13 = " + this.azulOutros)
 
     //opecacao 14 (calculo 1)
     this.azulSimHisCoPontTusdXMult = "2222";
