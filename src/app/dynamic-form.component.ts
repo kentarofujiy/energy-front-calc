@@ -9,6 +9,30 @@ import { Label } from 'ng2-charts';
 import * as math from "mathjs";
 import { multiply } from 'mathjs';
 
+/*
+Anotações:
+1. selecionar cliente
+  a. mes
+  b. distribuidora
+  c. categoria (origem)
+  d. distribuidora
+1.1 operacoes
+  a. carregar historico mes
+  b. carregar tarifas origem
+  c. comparar resultado total historico vs calculo origem
+2. selecionar destino
+  a. carregar tarifas destino
+  b. inicializar parametros destino
+  c. calcular variaveis estaticas
+  d. calcular fator ***
+  e. calcular variaveis Variaveis
+  f. gerar calculo inicial
+3. calcular ganho energético
+4. gerar gráfico  de linha valor vs disponibilidade energética
+5. gerar gráfico barra perda perdeganha 
+6. inicializar slider com limite
+7. serializar dados em json para criar snapshot
+*/
 @Component({
   selector: "app-dynamic-form",
   templateUrl: "./dynamic-form.component.html",
@@ -22,7 +46,7 @@ export class DynamicFormComponent implements OnInit {
 };
   public barChartLabels: Label[] = ['Comparação Valor da Fatura'];
   public barChartType: ChartType = 'bar';
- public barChartLegend = true;
+  public barChartLegend = true;
   public barChartPlugins = [];
   public barChartData: ChartDataSets[] = [ ];
   // // grafico de linhas
@@ -42,84 +66,85 @@ export class DynamicFormComponent implements OnInit {
   sliderPercentage: any = 0;
 
   // variaveis Tarfifas
-  tarAzulKwrReatExe: any = 0; // lihnha 9
+  tarAzulKwrReatExe: any = 0; 
   tarAzulDemRegisPontaTusd: any = 0;
   tarAzulDemRegisForaPontaTusd: any = 0;
   tarAzulExeKwhForaPonta: any = 0;
+  tarAzulKwhPontaTusd: any = 0;
+  tarAzulKwForaPontaTusd: any = 0;
+  tarAzulKwTePonta: any = 0;
+  tarAzulKwTEForaPonta: any = 0;
+  tarAzulKwhrTEPonta: any = 0;
+  tarAzulKwhrTForaPonta: any = 0;
+
 
   // Variaveis histórico de consumo
+  totalMes: any = 0;
   histValorFatura: any = 0;
   kwhPontaTusd: any = 0;
   kWPonta: any =0;
   //histCoRegistKwhPonta: any = 0;
   histDemanRegisKwForaPonta: any = 0;
   histCoKwhPontaTusd: any = 0; // linha 1
-  histCoKwhForaPontaTusd: any = 3; //linha 2
-  histCoTeAtivoPonta: any = 3; // linha 3
+  histCoKwhForaPontaTusd: any = 0; //linha 2
+  histCoTeAtivoPonta: any = 0; // linha 3
   histCoTeAtivoForaPonta: any = 0; //linha 4
-  histCoReativoPonta: any = 3; // linha 5
-  histCoReativoForaPonta: any = 3; //linha 6
-  histAdicionalBandeirasPonta: any = 3; //linha 7
-  histAdicionalBandeirasForaPonta: any = 3; //linha 8
+  histCoReativoPonta: any = 0; // linha 5
+  histCoReativoForaPonta: any = 0; //linha 6
+  histAdicionalBandeirasPonta: any = 0; //linha 7
+  histAdicionalBandeirasForaPonta: any = 0; //linha 8
   histDemReatExeForaPontaTusd: any = 0; //linha 9
-  histDemRegisPontaTusd: any = 3; // linha 10
+  histDemRegisPontaTusd: any = 0; // linha 10
   histDemUltrapForaPonta: any = 0; //linha 12
   histOutros: any = 0;
   demandaContatadaLimite: any = 0;
   // Init resultados operacoes
-  op1: any = 3;
-  op2: any = 3;
-  op3: any = 3;
-  op4: any = 3;
-  op5: any = 3;
-  op6: any = 3;
-  op7: any = 3;
-  op8: any = 3;
-  op9: any = 3;
-  op10: any = 3;
-  op11: any = 3;
-  op12: any = 3;
-  op13: any = 3;
-  op14: any = 3;
+  op1: any = 0;
+  op2: any = 0;
+  op3: any = 0;
+  op4: any = 0;
+  op5: any = 0;
+  op6: any = 0;
+  op7: any = 0;
+  op8: any = 0;
+  op9: any = 0;
+  op10: any = 0;
+  op11: any = 0;
+  op12: any = 0;
+  op13: any = 0;
+  op14: any = 0;
 
   // Init Calculos
-  calc1: any = 3;
-  calc2: any = 3;
-  calc3: any = 3;
-  calc4: any = 3;
-  calc5: any = 3;
-  calc6: any = 3;
+  calc1: any = 0;
+  calc2: any = 0;
+  calc3: any = 0;
+  calc4: any = 0;
+  calc5: any = 0;
+  calc6: any = 0;
 
-  // Init lancamentos
-  totalMes: any = 3;
 
   //simulacao azul
   //op1
-  azulCoKwhPontaTusd: any = 3;
-  tarAzulKwhPontaTusd: any = 0;
+  azulCoKwhPontaTusd: any = 0;
   //op2
-  azulCoKwhForaPontaTusd: any = 3;
-  tarAzulKwForaPontaTusd: any = 3;
+  azulCoKwhForaPontaTusd: any = 0;
+  
   //op3
-  azulCoTeAtivoPonta: any = 3;
-  tarAzulKwTePonta: any = 3;
+  azulCoTeAtivoPonta: any = 0;
   //op4
-  azulCoTeAtivoForaPonta: any = 3;
-  tarAzulKwTEForaPonta: any = 3;
+  azulCoTeAtivoForaPonta: any = 0;
 
   //op5
   azulCoReaExePonta: any = 0;
-  tarAzulKwhrTEPonta: any = 0;
 
   //op6
   azulCoReaExeForaPonta: any = 0;
-  tarAzulKwhrTForaPonta: any = 0;
 
   //op7
-  azulAdicionalBandPonta: any = 3;
+  azulAdicionalBandPonta: any = 0;
 
   //op8
-  azulAdicionalBandForaPonta: any = 3;
+  azulAdicionalBandForaPonta: any = 0;
 
   //9
   azulDemReatExeForaPontaTusd: any = 0;
@@ -137,7 +162,7 @@ export class DynamicFormComponent implements OnInit {
   azulOutros: any = 0;
 
   //14
-  azulSimHisCoPontTusdXMult: any = 3;
+  azulSimHisCoPontTusdXMult: any = 0;
 
   // variaveis perde-ganha
   perdeGanhaInicio: any = 0;
@@ -329,7 +354,7 @@ export class DynamicFormComponent implements OnInit {
     this.azulOutros =
     this.histOutros; 
     this.op13 = this.azulOutros;
-    conslole.log("op13 = " + this.azulOutros)
+    console.log("op13 = " + this.azulOutros)
 
     //opecacao 14 (calculo 1)
     this.azulSimHisCoPontTusdXMult = "2222";
